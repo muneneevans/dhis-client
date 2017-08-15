@@ -1,9 +1,9 @@
-var webpack = require("webpack");
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require("path");
+var webpack = require("webpack")
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var path = require("path")
 
-var DIST_DIR = path.resolve(__dirname,"public");
-var SRC_DIR = path.resolve(__dirname, "src");
+var DIST_DIR = path.resolve(__dirname,"public")
+var SRC_DIR = path.resolve(__dirname, "src")
 
 var config = {
     entry: SRC_DIR + "/index.js",
@@ -36,7 +36,7 @@ var config = {
         }
       ]
     }
-};
+}
 
 
-module.exports = config ;
+module.exports = config 
