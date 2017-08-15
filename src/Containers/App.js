@@ -1,15 +1,21 @@
-import React , { Component } from "react"
+import React, { Component } from "react"
 import "babel-polyfill"
+import { Link, Route } from "react-router"
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-//import screens here
 
-export default class App extends Component{
-    render(){
-        return(
-            //add screen inside the div
+import Home from "./Home"
+import LoginPage from "./LoginPage"
+import Header from "../Components/Header"
+
+export default class App extends Component {
+    render() {
+        return (
             <div>
-                <h1>App</h1>
-            </div> 
-        );
+                <Header title={"DHIS2 CLIENT"} />
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={LoginPage} />
+            </div>
+        )
     }
 }
