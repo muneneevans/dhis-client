@@ -5,6 +5,14 @@ import { Grid, Card, TextField, Button } from 'material-ui'
 import { FormLabel, FormControlLabel, FormControl, FormGroup } from 'material-ui/Form'
 import Radio, { RadioGroup } from 'material-ui/Radio'
 import Paper from 'material-ui/Paper'
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux"
+
+import LoginForm from "../Components/LoginForm"
+
+import * as authenticationActions from "../Store/Authentication/actions"
+import * as authenticationSelectors from "../Store/Authentication/selectors"
+
 
 const styles = theme => ({
     root: {
@@ -51,29 +59,8 @@ class LoginPage extends Component {
 
                         <Grid item sm={4} md={3}>
                             <Card className={classes.paper}>
-                                <FormControl
-                                    fullWidth={true}>
-                                    <FormGroup>
-
-                                        <TextField
-                                            id="username"
-                                            label="username"
-                                            className={classes.textField}
-                                        />
-                                        <TextField
-                                            id="password"
-                                            label="password"
-                                            type="password"
-                                            className={classes.textField}
-                                            margin="normal"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Button raised color="primary" className={classes.button}>
-                                            Login
-                                        </Button>
-                                    </FormGroup>
-                                </FormControl>
+                                <LoginForm
+                                    submitAction={this.props.authenticationActions.logIn}/>
                             </Card>
                         </Grid>
                     </Grid>
@@ -88,4 +75,18 @@ LoginPage.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(LoginPage)
+const mapStateToProps = (state, ownProps) => {
+    return {
+        // userInformation : authenticationSelectors.getUserInformation(state)
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        authenticationActions: bindActionCreators(authenticationActions, dispatch)
+    }
+}
+
+const loginPageConnect =  connect(mapStateToProps, mapDispatchToProps,)(LoginPage)
+
+export default withStyles(styles)(loginPageConnect)
