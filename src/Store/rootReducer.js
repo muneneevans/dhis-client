@@ -1,10 +1,11 @@
 import { combineReducers } from "redux"
 import { routerReducer } from "react-router-redux"
-//import reducers from domains
 
+import facilityReducer from "./OrgUnits/reducers"
 
 const rootReducer = combineReducers({
-     router: routerReducer
+    facilityReducer,
+    router: routerReducer
 })
 
 export default rootReducer
